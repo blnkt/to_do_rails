@@ -1,11 +1,28 @@
 <h1>Welcome to the To Do list app (again)!</h1>
 
-<h2>Lists</h2>
+<h2>To Do:</h2>
 
 <ul>
-  <% @lists.each do |list| %>
+  <% @not_complete.each do |list| %>
     <li><a href="/lists/<%= list.id %>"><%= list.name %></a></li>
+    <form action="/lists/<%= list.id %>" method="post">
+      <input name="_method" type="hidden" value="patch">
+      <input name="list[done]" type="hidden" value="true">
+      <button>Mark done</button>
+    </form>
   <% end %>
 </ul>
 
 
+<h2>Done:</h2>
+<ul>
+  <% @complete.each do |list| %>
+    <li><a href="/lists/<%= list.id %>"><%= list.name %></a></li>
+  <% end %>
+</ul>
+
+<form action="/lists" method="post">
+<label for="list_name">Name</label>
+  <input id="list_name" name="list[name]" type="text">
+  <button>Create Task</button>
+</form>
