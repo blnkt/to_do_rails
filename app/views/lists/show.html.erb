@@ -1,0 +1,9 @@
+<h1><%= @list.name %></h1>
+
+<ul>
+  <% @list.tasks.each do |task| %>
+    <li><%= task.name %></li>
+  <% end %>
+</ul>
+
+<p><a href="/lists">Return to Lists listing</a></p>
